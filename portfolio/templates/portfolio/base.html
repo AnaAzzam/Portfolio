@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammed Jamal Azzam - Portfolio</title>
+    <link rel="stylesheet" href="/static/css/output.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body class="font-inter bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Theme Toggle -->
+    <div class="fixed top-4 right-4 z-50">
+        <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-gray-100">
+            <i class="fas fa-moon dark:fa-sun"></i>
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white dark:bg-gray-800 shadow-md z-40">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-playfair text-gray-900 dark:text-gray-100">Mohammed Jamal Azzam</h1>
+            <ul class="flex space-x-6">
+                <li><a href="#about" class="hover:text-blue-500 dark:hover:text-blue-400 transition">About</a></li>
+                <li><a href="#skills" class="hover:text-blue-500 dark:hover:text-blue-400 transition">Skills</a></li>
+                <li><a href="#projects" class="hover:text-blue-500 dark:hover:text-blue-400 transition">Projects</a></li>
+                <li><a href="#experience" class="hover:text-blue-500 dark:hover:text-blue-400 transition">Experience</a></li>
+                <li><a href="#achievements" class="hover:text-blue-500 dark:hover:text-blue-400 transition">Achievements</a></li>
+                <li><a href="#contact" class="hover:text-blue-500 dark:hover:text-blue-400 transition">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-20">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-200 dark:bg-gray-800 py-4 text-center">
+        <p>© 2025 Mohammed Jamal Azzam. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Theme Toggle and Animations -->
+    <script>
+        // Theme toggle
+        const toggleButton = document.getElementById('theme-toggle');
+        toggleButton.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            toggleButton.querySelector('i').classList.toggle('fa-moon');
+            toggleButton.querySelector('i').classList.toggle('fa-sun');
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Fade-in animations on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            element.classList.add('opacity-0', 'translate-y-10', 'transition', 'duration-500');
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
