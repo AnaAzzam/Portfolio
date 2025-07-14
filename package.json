@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "build:css": "npx tailwindcss -i portfolio/static/css/input.css -o portfolio/static/css/output.css --minify",
+  "build": "npx tailwindcss -i ./portfolio/static/css/input.css -o ./portfolio/static/css/output.css --minify",
   "watch:css": "npx tailwindcss -i portfolio/static/css/input.css -o portfolio/static/css/output.css --watch"
 
   },
